@@ -1,0 +1,74 @@
+head
+  meta content="width=device-width, initial-scale=1" name="viewport"
+  = javascript_include_tag "application"
+  = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
+  = csrf_meta_tags
+
+body
+  
+  .col-3
+
+  .col-6
+    .card.card-body style=("opacity: 0.95")
+
+      h4 Sign In
+      
+      = form_for(:session, url: login_path) do |f|
+        - if flash[:danger]
+          .alert.alert-danger
+            = flash[:danger]
+        .form-group
+          = f.label :email
+          = f.email_field :email, class: 'form-control'
+        .form-group
+          = f.label :password
+          | &nbsp; &nbsp;
+          = link_to "(Forgot Your Password?)", new_password_reset_path
+          = f.password_field :password, class: 'form-control'
+        .form-group
+          = f.check_box :remember_me
+          | Remember me
+          = f.submit "Log in", class: "btn btn-primary btn-block"
+        br
+
+      .text-center.text-white
+        = link_to "Signup", signup_path, data: { disable_with: t("helpers.please_wait") }, class: 'btn btn-sm btn-outline-dark' 
+        | &nbsp;
+        br
+        br
+
+      .text-center.small 
+        p
+          small Zalo Hackathon
+            
+
+  .col-3
+
+  video#video-background.fillWidth.fadeIn.animated autoplay="" poster="https://res.cloudinary.com/nara/image/upload/v1490375114/blue1920_tqtj63.jpg" loop="" value="featured_ss"
+    source src="https://f001.backblazeb2.com/file/soratest/dubai+marina+nightlapse+timelapse.mp4" type="video/mp4"
+      | Sorry, your browser does not support the video tag.
+
+
+
+javascript:
+  
+css:
+  a:link {color: blue;}
+
+  body {
+    margin: 0;
+    padding: 0;
+    background-attachment: fixed;
+    background-size: cover;
+  }
+
+  #video-background {
+    position: fixed;
+    right: 0; 
+    bottom: 0;
+    min-width: 100%; 
+    min-height: 100%;
+    width: auto; 
+    height: auto;
+    z-index: -100;
+  }

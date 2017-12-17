@@ -1,0 +1,11 @@
+//= require jquery3
+//= require jquery.validate
+//= require popper
+//= require bootstrap
+//= require jquery_ujs
+//= require turbolinks
+//= require toastr
+//= require highcharts
+//= require chartkick
+//= jquery.jplayer.min.js
+//= require_tree .

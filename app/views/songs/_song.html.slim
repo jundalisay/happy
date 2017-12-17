@@ -1,0 +1,17 @@
+.card
+  = link_to song_path(song) do
+    = image_tag(song.photo, class: "img-fluid rounded")
+
+    .card-img-overlay
+      .align-bottom
+        = image_tag(song.artist.photo, size: 50, class: "rounded-circle")
+    
+
+    .card-footer.text-muted
+      h6 #{song.title}
+      small #{song.artist.name} &nbsp; &nbsp; #{song.album}
+
+
+
+css:
+  .card { min-height: 100px}

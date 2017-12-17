@@ -1,0 +1,20 @@
+.p-2
+  .row
+    .col-12.col-lg-6
+      h5 Artist List
+
+      .card-columns
+        = render partial: 'artist', collection: @artists, as: :artist
+
+    .col-12.col-lg-6
+      h5 Most Liked 
+
+      .card-columns
+        = render partial: 'artist', collection: @liked_artists, as: :artist      
+      
+
+css:
+  ul.nav-pills {
+    top: 20px;
+    position: fixed;
+  }

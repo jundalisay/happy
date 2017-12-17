@@ -1,0 +1,13 @@
+.card
+  .p-2.row
+    .col-4
+      = render partial: "users/avatar_fluid", locals: { user: user }
+
+    .col-8  
+      = link_to user.username, user
+      br
+      small Favorite Artist #{user.artist1}
+      br
+      small Favorite Genre #{user.genre1}
+      - if user == current_user
+        = link_to "This is you!", user_path(user), class: "btn btn-warning btn-block btn-sm"

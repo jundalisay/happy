@@ -1,0 +1,1 @@
+json.(artist, :name, :photo)

@@ -1,0 +1,26 @@
+.p-2
+  .row
+    .col-12.col-lg-3
+      h5 Users
+
+      = form_tag users_path, method: :get do |f|
+        .input-group
+          = text_field_tag :q, params[:q], placeholder: "Search for", class: "form-control"
+          = button_tag(type: "submit", class: "btn btn-light") do
+            i.fa.fa-search
+            
+
+    .col-12.col-lg-9
+      - if @users.blank?
+        h5 Sorry, no users in that region
+      - if params[:query] && @users.blank?
+        h5 Sorry, unable to find #{params[:query]}
+
+      .card-columns
+        = render partial: 'user_card', collection: @users, as: :user 
+
+css:
+  ul.nav-pills {
+    top: 20px;
+    position: fixed;
+  }

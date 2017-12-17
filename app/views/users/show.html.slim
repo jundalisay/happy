@@ -1,0 +1,40 @@
+.p-2
+  
+  .row
+    .col-12.col-lg-4.text-center
+      - user = @user
+      = render partial: "users/avatar_fluid", locals: {user: user}
+        
+      .col-12
+
+
+    .col-12.col-lg-8
+      h2 = user.username
+      br
+      h5 Favorite Artist: #{user.artist1}
+      h5 Favorite Genre: #{user.genre1}
+      h5 Listening History
+      
+      - if @listenings.blank?
+        | Sorry, user has not played any songs yet
+      - else  
+        table.table.table-striped.table-responsive
+          thead.thead-inverse
+            tr
+              td 
+                b Song
+              td 
+                b Artist
+              td 
+                b Last Played
+          tbody
+            - @listenings.each do |l|
+              tr
+                - @song = Song.find_by_id(l.song_id)
+                td = @song.title
+                td = @song.artist.name
+                td = @song.updated_at
+                / td = l.artist.name
+
+  
+  

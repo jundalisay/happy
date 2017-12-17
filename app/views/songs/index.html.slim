@@ -1,0 +1,61 @@
+= csrf_meta_tags
+meta content="width=device-width, initial-scale=1" name="viewport"
+= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
+= javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+
+
+.p-2
+  .row
+    .col-12.col-lg-2
+      = form_tag songs_path, method: :get do |f|
+        .input-group
+          = text_field_tag :q, params[:q], placeholder: "Search", class: "form-control"
+          = button_tag(type: "submit", class: "btn btn-light") do
+            i.fa.fa-search
+
+
+      - if @genres.present?
+        nav.nav.flex-column
+          a.btn.btn-secondary.btn-sm aria-controls="categories" aria-expanded="false" data-toggle="collapse" href="#categories" Categories
+            | &#9660;
+
+          #categories.collapse.small
+            ul.list-group
+              - @genres.each do |genre|
+                li.list-group-item.nav-link #{genre.name} #{@genres.count}
+                  
+      / .px-2
+        - if current_user.blank?
+          = image_tag $logo, size: 50
+          br
+          h4 Welcome to Happy song list
+          br
+
+    .col-12.col-lg-5
+      h5 Songs List
+      .card-columns
+        = render partial: 'song', collection: @songs, as: :song
+
+    .col-12.col-lg-5
+      h5 Top Song
+      - if current_user.present?
+        - @top_song = Song.top
+        = render partial: 'song', collection: @top_song, as: :song
+      - else
+        h4 Please login to see the top song
+
+      br
+      br
+      h5 Recommendations
+      - if current_user.present?
+        - @top_songs = Song.top(5)
+        = render partial: 'song', collection: @top_songs, as: :song      
+      - else
+        h4 Please login to see the recommendations
+
+
+css:
+  ul.nav-pills {
+    top: 20px;
+    position: fixed;
+  }

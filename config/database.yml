@@ -1,0 +1,18 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+
+development:
+  <<: *default
+  database: happy_development
+
+test:
+  <<: *default
+  database: happy_test
+
+production:
+  <<: *default
+  database: happy_production
+  username: happy
+  password: <%= ENV['HAPPY_DATABASE_PASSWORD'] %>
